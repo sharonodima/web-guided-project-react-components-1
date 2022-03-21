@@ -35,6 +35,7 @@ function App(props) {
       <h2>Instructor's name: {props.instructor}</h2>
       <h3>{props.numStudents} students are happy? {props.happy}</h3>
       <Playground favColor="Lemon Chiffon" />
+      {/** Playground(favColor="Lemon Chiffon") */}
     </div>
   )
 }

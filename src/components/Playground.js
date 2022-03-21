@@ -14,16 +14,55 @@ import React, { useState } from 'react';
 function Playground(props) {
   const [count, setCount] = useState(0);
   const [spinnerOn, setSpinnerOn] = useState(false);
+  const [weapon, setWeapon] = useState("scissors");
+  const [compChoice, setCompChoice] = useState(null);
+
+  const pickRandom = () => {
+    const num = Math.floor(Math.random() * 3);
+    const choices = ["rock", "paper", "scissors"];
+    // setCompChoice(choices[num]);
+    return choices[num];
+  }
+
+  const adjustCount = (amount) => {
+    if (count + amount < 0) {
+      return;
+    }
+    if (count + amount > 10) {
+      return;
+    }
+    setCount(count + amount);
+  }
+
+  if (spinnerOn) {
+    return (
+      <div className="container">
+        <h3>The spinner is {spinnerOn ? "ON" : "OFF"}. Please wait...</h3>
+        <button onClick={() => setSpinnerOn(false)}>Turn the spinner off ya doofus!</button>
+      </div>
+    )
+  }
 
   return (
     <>
       <h1>PLAYGROUND!!!! My favorite color is...{props.favColor}</h1>
       <p>{count}</p>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
+      <button onClick={() => adjustCount(1)}>Increment</button>
+      <button onClick={() => adjustCount(-1)}>Decrement</button>
       <h3>The spinner is {spinnerOn ? "ON" : "OFF"}</h3>
+      <button onClick={() => setSpinnerOn(!spinnerOn)}>Toggle spinner!</button>
+      <h3>The current weapon is...{weapon}</h3>
+      <button onClick={pickRandom}>Comp Choice!</button>
+      { compChoice && <h3>{compChoice}</h3> }
+      <button onClick={() => setWeapon("rock")}>Pick Rock!</button>
+      <button onClick={() => setWeapon("paper")}>Pick Paper!</button>
+      <button onClick={() => setWeapon("scissors")}>Pick Scissors!</button>
     </>
   )
 }
 
 export default Playground;
+
+// !false => true
+// !true => false
+// !"Casey" => false

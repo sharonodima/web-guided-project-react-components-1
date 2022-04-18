@@ -1,5 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
+import Playground from "./components/Playground"
+
+
+/**
+ * Two ways to export in react are
+ * 1.) Default export
+ * 2.)Named export
+ */
 
 /*
 💥💥💥 Rules when DECLARING a React component 💥💥💥
@@ -22,14 +30,26 @@ import { render } from 'react-dom'
 */
 
 function App(props) {
+
+  /**
+   * if we do const {track, instructor, numStudents, favStudent, foo} = props then we wont need props. like below.
+   */
+  const fun = true;
   return (
     <div className='container'>
-      <h1>Welcome to React, {props.track} rockstars!!</h1>
+      <h1>Welcome to React, {props.track} rockstars!! {props.instructor} is the best</h1>
+      <p> current number of students : {props.numStudents}</p>
+      <h2>Favorite Student is {props.favStudent}</h2>
+      <Playground happy = {fun}/>
     </div>
   )
 }
 
 render(
-  <App track='Web' />,
+  <App track='Web' instructor="CRHarding" numStudents="31" favStudent="Casey" foo="bar" />,
   document.querySelector('#root')
 )
+
+/**
+ * props are data passed from a parent to a child
+ */
